@@ -7,10 +7,10 @@
 
 		<property name="password"></property>
 
-		<property name="driverClass">org.h2.Driver</property> 
+		<property name="driverClass">org.h2.Driver</property>
 		<!-- com.mysql.jdbc.Driver -->
 
-		<property name="jdbcUrl">jdbc:h2:file:/mnt/sda5/db/h2/test</property> 
+		<property name="jdbcUrl">jdbc:h2:file:/mnt/sda5/db/h2/test</property>
 		<!-- jdbc:mysql://localhost:3306/jdbc -->
 
 		<property name="initialPoolSize">10</property>
