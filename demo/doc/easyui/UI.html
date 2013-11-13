@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+
+<link rel="stylesheet" type="text/css" href="themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="themes/icon.css">
+<script type='text/javascript' src='jquery.min.js'></script>
+<script type="text/javascript" src="jquery.easyui.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+ loadtable();
+ updata();
+ loadtree();
+ loadcombobox('UIcombobox');
+})
+</script>
+</head>
+
+    
+<body>
+
+<table id="UItable"></table>
+<ul id="UItree" class="easyui-tree"></ul>
+
+<input class='easyui-combobox' 
+            name='ConditionName' id='UIcombobox' 
+            data-options="
+                    
+                    valueField:'id',
+                    textField:'text'
+            " />
+<script type="text/javascript">
+
+function loadtable(){
+$('#UItable').datagrid({
+  width:'auto',
+     height:300,               
+                striped: true,  
+                singleSelect : true,  
+    url:'datagrid_data.json',
+  pagination: true,  
+                rownumbers: true,  
+
+    columns:[[
+
+        {field:'itemid',title:'Item ID',width:80},
+
+        {field:'productid',title:'Product ID',width:80},
+
+        {field:'listprice',title:'List Price',width:80,align:'right'},
+
+        {field:'unitcost',title:'Unit Cost',width:80,align:'right'},
+
+        {field:'attr1',title:'Attribute',width:100},
+
+        {field:'status',title:'Status',width:60}
+
+    ]]
+
+});
+}
+
+function updata(){
+ var columns=[[
+ {field:'itemid',title:'Item ID',width:80},
+
+        {field:'productid',title:'产品',width:80},
+
+        {field:'listprice',title:'List Price',width:80,align:'right'},
+
+        {field:'unitcost',title:'Unit Cost',width:80,align:'right'},
+
+        {field:'attr1',title:'属性',width:100},
+
+        {field:'status',title:'状态',width:60}
+ ]]
+
+ var options=$("#UItable").datagrid("options");
+ options.columns=columns;
+ $("#UItable").datagrid(options);
+ $("#UItable").datagrid("load");
+}
+
+
+function loadtree() {
+    var url = "tree_data.json";
+    
+    $("#UItree").tree({
+
+        checkbox: false,
+        lines:true,
+        url: url,
+        onBeforeExpand: function (node, param) {// 获取该节点下其他数据  
+          //  $("#" + treeview).tree("options").url = url + "&nodepath=" + // //node.attributes.value;
+        },
+        //onSelect: function (node) {
+        //    $("#treeview").tree("expand", node.target);
+        //},
+        onClick: function (node) {
+           
+            if(node.attributes.clickjs){   
+            eval(node.attributes.clickjs);
+            }
+         
+        }, 
+        onLoadSuccess: function (data,node) {
+            $("#UItree").show();
+           
+        
+        }
+      
+    });
+
+   
+
+}
+
+function loadcombobox(cname){
+
+var url="combobox_data.json";
+$('#'+cname).combobox({    url:url,    valueField:'id',    textField:'text'});
+//var data = $('#'+cname).combobox('getData');
+// $("#"+cname).combobox('select',data[0].text);
+$('#'+cname).combobox('textbox').bind('blur',function(){
+//    获得输入值
+    var inputV = $('#'+cname).combobox('getText');
+    var datas = $('#'+cname).combobox('getData');
+    if(datas==null)return;
+    var size = datas.length;
+    if(inputV==""||size==0){
+        return;
+    }else{
+        for(var i =0;i<size;i++){
+            if(inputV==datas[i].text){
+                return;
+            }
+        }
+        $('#'+cname).combobox('clear');
+    }
+});
+
+}
+</script>
+</body>
+</html>
