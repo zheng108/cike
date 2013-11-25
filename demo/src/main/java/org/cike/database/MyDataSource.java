@@ -8,10 +8,11 @@ import java.util.Properties;
 
 import javax.sql.DataSource;
 
+import org.cike.init.EnumDriver;
 import org.cike.io.IOUtils;
 
 public class MyDataSource implements DataSource{
-	private String properties="db.properies";
+	private String properties="db.properties";
 	private EnumDriver driver;
 	ThreadLocal<Connection> connection=new ThreadLocal<Connection>();
 	
@@ -53,7 +54,7 @@ public class MyDataSource implements DataSource{
 	   
 	}
 	
-	MyDataSource(){
+	public MyDataSource(){
 		driver=EnumDriver.H2;//默认
 	}
 	

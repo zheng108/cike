@@ -14,6 +14,7 @@ import org.apache.commons.dbutils.handlers.MapListHandler;
 import org.cike.MyVisit;
 import org.cike.impl.MyImpl;
 import org.cike.impl.MyShow;
+import org.cike.init.MyDefault;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
@@ -22,7 +23,8 @@ public class MyDBUtils {
 	private DataSource ds;
 	
 	MyDBUtils(){
-		ds=new ComboPooledDataSource();
+	//	ds=new ComboPooledDataSource();
+		ds=MyDefault.getDataSource();
 	}
 	
 	public MyDBUtils(DataSource ds){
