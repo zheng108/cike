@@ -3,6 +3,7 @@ package org.cike.ui;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.text.MessageFormat;
 
 public abstract class TablePort {
 	public abstract void addColumn(String name);
@@ -41,5 +42,11 @@ public abstract class TablePort {
 		return this;
 	}
 	
+	public static String limit(int page,int rows){ //小数据量？int
+		int begin=(page-1)*rows;
+		int end=begin+rows;
+	//	return " limit "+begin+","+end;
+		return MessageFormat.format(" limit {0},{1} ", begin,end);
+	}
 	
 }

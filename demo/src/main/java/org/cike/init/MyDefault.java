@@ -24,10 +24,13 @@ public class MyDefault {
 	}
 	
 	public static void initest(){
-		MyDefault mdf=new MyDefault();
+		//MyDefault mdf=new MyDefault();
 		 String rs=   getDriver().value();
 		 
 		 IOUtils.info(rs);
+		 IOUtils.info(getUI().getSimpleName());
+		 IOUtils.info(getDataSource().toString());
+		 
 	}
 	
 	
@@ -37,7 +40,7 @@ public class MyDefault {
 	 * 枚举类型位于包  org.cike.init下,命名 约定 为 Enum+key
 	 * 
 	 */
-	public  MyDefault(){
+	static{
 		Properties property=IOUtils.load("default.properties");
 		if(property!=null){
 			MyVisit.visit(property, new IPorts(){
@@ -74,8 +77,8 @@ public class MyDefault {
 		return driver;
 	}
 	
-	public static EnumUI getUI(){
-		return (EnumUI)MyCache.get("UI");
+	public static Class getUI(){
+		return ((EnumUI)MyCache.get("UI")).getUI();
 	}
 	
 	public static DataSource getDataSource(){

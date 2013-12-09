@@ -1,4 +1,4 @@
-package org.cike.database;
+package org.app;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -12,9 +12,8 @@ import org.apache.commons.dbutils.ResultSetHandler;
 import org.apache.commons.dbutils.handlers.MapHandler;
 import org.apache.commons.dbutils.handlers.MapListHandler;
 import org.cike.MyVisit;
-import org.cike.impl.MyImpl;
-import org.cike.impl.MyShow;
 import org.cike.init.MyDefault;
+import org.cike.io.IOUtils;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
@@ -42,7 +41,8 @@ public class MyDBUtils {
 	  String sql="select * from item";
 	  List<Map<String, Object>> listmap=utils.query(sql);
 	  
-	  MyShow.listMap(listmap);
+	  IOUtils.info(listmap.size()+"");
+	 // MyShow.listMap(listmap);
 	}
 	
 	public List<Map<String, Object>> query(String sql){

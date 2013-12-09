@@ -1,4 +1,4 @@
-package org.cike.io;
+package org.app;
 
 import java.io.IOException;
 import java.io.StringWriter;
@@ -7,13 +7,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.cike.io.IOUtils;
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 
 import com.fasterxml.jackson.xml.XmlMapper;
 
-public class MyFormat {
+public class Myjackson {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

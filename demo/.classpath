@@ -14,5 +14,7 @@
 	<classpathentry kind="var" path="M2_REPO/com/fasterxml/jackson-xml-databind/0.6.2/jackson-xml-databind-0.6.2.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/codehaus/jackson/jackson-xc/1.9.2/jackson-xc-1.9.2.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/codehaus/woodstox/stax2-api/3.1.0/stax2-api-3.1.0.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/jsoup/jsoup/1.7.3/jsoup-1.7.3.jar"/>
+	<classpathentry kind="var" path="M2_REPO/commons-io/commons-io/2.4/commons-io-2.4.jar" sourcepath="/svn"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

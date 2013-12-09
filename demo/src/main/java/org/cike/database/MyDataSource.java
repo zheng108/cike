@@ -9,11 +9,12 @@ import java.util.Properties;
 import javax.sql.DataSource;
 
 import org.cike.init.EnumDriver;
+import org.cike.init.MyDefault;
 import org.cike.io.IOUtils;
 
-public class MyDataSource implements DataSource{
+public class MyDataSource implements DataSource{ //ConnectionPoolDataSource 
 	private String properties="db.properties";
-	private EnumDriver driver;
+	private EnumDriver driver=EnumDriver.H2; //默认
 	ThreadLocal<Connection> connection=new ThreadLocal<Connection>();
 	
 
@@ -55,7 +56,8 @@ public class MyDataSource implements DataSource{
 	}
 	
 	public MyDataSource(){
-		driver=EnumDriver.H2;//默认
+		//driver=EnumDriver.H2;//默认
+		driver=MyDefault.getDriver();//IOC?
 	}
 	
 	
