@@ -1,6 +1,5 @@
 package org.cike;
 
-import org.cike.init.EnumUI;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -37,6 +36,5 @@ public class EnumTest
     {
         assertTrue( true );
      //   assertEquals(EnumUI.EASYUI,Enum.valueOf(EnumUI.class, "easyui"));
-        assertEquals(EnumUI.EASYUI,Enum.valueOf(EnumUI.class, "easyui".toUpperCase()));
-    }
+     }
 }

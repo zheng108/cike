@@ -1,5 +1,8 @@
 package org.cike.io;
 
+/**
+ * 有问题？
+ */
 import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,7 +26,7 @@ public class MyJAXB {
 	public static void initest(){
 		List list=new ArrayList();
 		list.add("cike");
-		//list.add(1101);
+		list.add(1101);
 		Map map=new HashMap();
 		map.put("name", "cike");
 		map.put("id", 1101);

@@ -1,17 +1,18 @@
 package org.cike.init;
 
+
 import java.util.Properties;
 
 import javax.sql.DataSource;
 
 import org.cike.IPorts;
-import org.cike.MyCache;
 import org.cike.MyVisit;
 import org.cike.database.DAO;
 import org.cike.io.IOUtils;
 
 /**
  * 配置枚举工厂？
+ * 待定
  * @author guest
  *
  */
@@ -25,12 +26,12 @@ public class MyDefault {
 	
 	public static void initest(){
 		//MyDefault mdf=new MyDefault();
-		 String rs=   getDriver().value();
-		 
-		 IOUtils.info(rs);
-		 IOUtils.info(getUI().getSimpleName());
-		 IOUtils.info(getDataSource().toString());
-		 
+//		 String rs=   getDriver().value();
+//		 
+//		 IOUtils.info(rs);
+//		 IOUtils.info(getUI().getSimpleName());
+//		 IOUtils.info(getDataSource().toString());
+//		 
 	}
 	
 	
@@ -52,7 +53,7 @@ public class MyDefault {
 					Class type=null;
 					try {
 						type=Class.forName("org.cike.init.Enum"+key);
-						MyCache.put(key,Enum.valueOf(type, val));
+					//	MyCache.put(key,Enum.valueOf(type, val));
 					} catch (ClassNotFoundException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -68,34 +69,35 @@ public class MyDefault {
 		
 	}
 	
-	public static EnumDriver getDriver(){
-		
-		EnumDriver driver=(EnumDriver) MyCache.get("Driver");
-		if(driver==null){
-			driver=EnumDriver.H2;
-		}
-		return driver;
-	}
-	
-	public static Class getUI(){
-		return ((EnumUI)MyCache.get("UI")).getUI();
-	}
-	
-	public static DataSource getDataSource(){
-		EnumDatasource ds=(EnumDatasource)MyCache.get("Datasource");
-		if(ds==null){
-			ds=EnumDatasource.DEFAULT;
-		}
-		return ds.getDatasource();
-	}
-	
-	public static DAO getDAO(){
-		DAO dao=(DAO)MyCache.get("DAO");
-		if(dao==null){
-			dao=EnumDAO.DEFAULT.getDAO();
-		}
-		
-		return dao;
-	}
+//	public static EnumDriver getDriver(){
+//		
+//		EnumDriver driver=(EnumDriver) MyCache.get("Driver");
+//		if(driver==null){
+//			driver=EnumDriver.H2;
+//		}
+//		return driver;
+//	}
+//	
+//	public static Class getUI(){
+//		return ((EnumUI)MyCache.get("UI")).getUI();
+//	}
+//	
+//	public static DataSource getDataSource(){
+//		EnumDatasource ds=(EnumDatasource)MyCache.get("Datasource");
+//		if(ds==null){
+//			ds=EnumDatasource.DEFAULT;
+//		}
+//		return ds.getDatasource();
+//	}
+//	
+//	//怪怪的
+//	public static DAO getDAO(){
+//		DAO dao=(DAO)MyCache.get("DAO");
+//		if(dao==null){
+//			dao=EnumDAO.DEFAULT.getDAO();
+//		}
+//		
+//		return dao;
+//	}
 
 }

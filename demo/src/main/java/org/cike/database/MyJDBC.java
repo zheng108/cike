@@ -14,12 +14,14 @@ import javax.sql.DataSource;
 import org.cike.IPorts;
 import org.cike.MyVisit;
 import org.cike.Ports;
+import org.cike.init.MyCache;
 import org.cike.init.MyDefault;
 import org.cike.io.IOUtils;
 
-public class MyJDBC implements DAO {
+public class MyJDBC implements Runnable {
 
-	DataSource ds = null;
+	//static DataSource ds=new MyDataSource();
+	
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -30,16 +32,19 @@ public class MyJDBC implements DAO {
 	public static MyJDBC initest() {
 		MyJDBC db = new MyJDBC();
 
+		db.query(H2SQL.ALLITEM);
 		return db;
 	}
 
 	public MyJDBC() {
-		ds = MyDefault.getDataSource();
+	//	ds = MyDefault.getDataSource();
 	}
 
 	public static ResultSet query(String sql) {
 		System.out.println(sql);
-		DataSource ds = MyDefault.getDataSource();
+		if(sql.equals("")) return null;
+		MyCache cache=MyCache.getInstance();
+		DataSource ds = (DataSource)cache.get("DATASOURCE");
 		PreparedStatement pst;
 		try {
 			Connection connect = ds.getConnection();
@@ -61,10 +66,11 @@ public class MyJDBC implements DAO {
 	
 	public static int update(String sql) throws SQLException {
 		System.out.println(sql);
-		DataSource ds = MyDefault.getDataSource();
+		
 		PreparedStatement pst;
 		int rs=-1;
-		
+		MyCache cache=MyCache.getInstance();
+		DataSource ds = (DataSource)cache.get("DATASOURCE");
 			Connection connect = ds.getConnection();
 			pst = connect.prepareStatement(sql);
 			 rs= pst.executeUpdate();
@@ -101,7 +107,8 @@ public class MyJDBC implements DAO {
 
 	public static void commit(Ports port) throws SQLException {
 		Connection connect = null;
-		DataSource ds = MyDefault.getDataSource();
+		MyCache cache=MyCache.getInstance();
+		DataSource ds = (DataSource)cache.get("DATASOURCE");
 		try {
 			connect = ds.getConnection();
 			connect.setAutoCommit(false);
@@ -136,4 +143,9 @@ public class MyJDBC implements DAO {
 	 * 
 	 * return query(sql); }
 	 */
+
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
 }

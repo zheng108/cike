@@ -1,4 +1,4 @@
-package org.cike.ui;
+package org.cike.database;
 
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -14,21 +14,25 @@ public abstract class TablePort {
 
 		try {
 
-			if (rs==null||!rs.next())
+			if (rs==null)
 				return this; 
+			else{
+				rs.beforeFirst();
+			}
+			
 			ResultSetMetaData rsmd = rs.getMetaData();
 			int size = rsmd.getColumnCount();
 			for (int i = 0; i < size; i++) {
 				addColumn(rsmd.getColumnName(i + 1));
 			}
 
-			rs.beforeFirst();
+			
 
 			while (rs.next()) {
 
 				Object[] row = new Object[size];
 				for (int i = 0; i < size; i++) {
-					row[i] = rs.getObject(i + 1);
+					row[i] = rs.getObject(i + 1); //待优化
 				}
 				addRows(row);
 			}
@@ -42,11 +46,5 @@ public abstract class TablePort {
 		return this;
 	}
 	
-	public static String limit(int page,int rows){ //小数据量？int
-		int begin=(page-1)*rows;
-		int end=begin+rows;
-	//	return " limit "+begin+","+end;
-		return MessageFormat.format(" limit {0},{1} ", begin,end);
-	}
-	
+
 }

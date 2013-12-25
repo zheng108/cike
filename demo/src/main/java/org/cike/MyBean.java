@@ -15,6 +15,8 @@ import javax.activation.FileDataSource;
 import org.cike.data.MyChildrenNode;
 import org.cike.data.Test;
 import org.cike.database.H2SQL;
+import org.cike.domain.MyChina;
+import org.cike.init.MyCache;
 import org.cike.io.IOUtils;
 import org.cike.ui.EasyUIModule;
 
@@ -37,6 +39,8 @@ public class MyBean {
 		rs=getField(t,"id");
 		
 		rs=cn.getParam("name").toString();
+		
+		execute(MyChina.class,"getAdimsistration",new HashMap());
 		IOUtils.info(rs);
 	}
 	
@@ -119,8 +123,16 @@ public class MyBean {
 			}
 		}
 		try {
+			String name=type.getName()+"."+method;
+			Method func=null;
+			MyCache cache=MyCache.getInstance();
+			if(cache.has(name)){
+				func=(Method)cache.get(name);
+			}else{
 			
-			Method func = type.getMethod(method, parameterTypes); //bug
+			 func= type.getMethod(method, parameterTypes); //bug
+			 cache.put(name, func);
+			}
 			return func.invoke(type, args);
 		} catch (NoSuchMethodException e) {
 			// TODO Auto-generated catch block
@@ -141,24 +153,11 @@ public class MyBean {
 		return null;
 	}
 	
-//	private static Class getType(Object obj){
-//		Class type=obj.getClass();
-//		Class[] interfaces=type.getInterfaces();
-//		
-//		if(interfaces!=null&&interfaces.length>0){
-//			type=interfaces[0];
-//		}
-//		
-////		if(type.getSuperclass() instanceof Object){
-////			
-////		}else{
-////			type=type.getSuperclass();
-////		}
-//		return type;
-//	}
+
 	
 	/**
-	 * 获取 静态常量
+	 * 获取 静态常量 
+	 * 代定
 	 * @param clazz
 	 * @param name
 	 * @return
@@ -167,7 +166,7 @@ public class MyBean {
 		String rs="";
 		try {
 			Field field=clazz.getField(name);
-			rs=field.toGenericString();
+			//rs=field.toGenericString();
 			rs=field.get(null).toString();
 		} catch (SecurityException e) {
 			// TODO Auto-generated catch block
@@ -210,6 +209,12 @@ public class MyBean {
 		return rs;
 	}
 	
+	/**
+	 * 需 set/get
+	 * @param obj
+	 * @param val
+	 * @return
+	 */
 	public static Object getProperty(Object obj, String val) {
 		Object rs=null;
 		try {
@@ -237,6 +242,29 @@ public class MyBean {
 	public static <T> T getProxy(T target,InvocationHandler handler){
 		return (T)Proxy.newProxyInstance(target.getClass().getClassLoader(),  
                 target.getClass().getInterfaces(), handler); 
+	}
+	
+	public static <T> T getProxy(Class<T> target,InvocationHandler handler){
+		return (T)Proxy.newProxyInstance(target.getClassLoader(),  
+                target.getInterfaces(), handler); 
+	}
+	
+	public static void load(String name){
+		ClassLoader loader = Thread.currentThread()
+				.getContextClassLoader();
+		
+		try {
+			loader.loadClass(name).newInstance();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

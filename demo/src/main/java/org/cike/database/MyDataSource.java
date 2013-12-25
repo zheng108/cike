@@ -57,7 +57,7 @@ public class MyDataSource implements DataSource{ //ConnectionPoolDataSource
 	
 	public MyDataSource(){
 		//driver=EnumDriver.H2;//默认
-		driver=MyDefault.getDriver();//IOC?
+		//driver=MyDefault.getDriver();//IOC?
 	}
 	
 	

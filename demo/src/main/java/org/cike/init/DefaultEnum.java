@@ -5,6 +5,7 @@ import javax.sql.DataSource;
 import org.cike.database.DAO;
 import org.cike.database.MyDataSource;
 import org.cike.database.MyJDBC;
+import org.cike.ui.MyEasyUI;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
@@ -41,21 +42,42 @@ enum EnumDatasource {
 	abstract DataSource getDatasource();
 }
 
-enum EnumDAO {
-	DEFAULT() {
+ enum EnumUI {
+	EASYUI {
 		@Override
-		DAO getDAO() {
+		public Class getUI() {
 			// TODO Auto-generated method stub
-			return new MyJDBC();
+			return MyEasyUI.class;
 		}
-	}, DBUtils() {
+	},
+	BOOTSTRAP
+
+	{
 		@Override
-		DAO getDAO() {
+		public Class getUI() {
 			// TODO Auto-generated method stub
 			return null;
 		}
 	};
-
-	
-	abstract DAO getDAO();
+	public abstract Class getUI();
 }
+
+//怪怪的
+//enum EnumDAO {
+//	DEFAULT() {
+//		@Override
+//		DAO getDAO() {
+//			// TODO Auto-generated method stub
+//			return new MyJDBC();
+//		}
+//	}, DBUtils() {
+//		@Override
+//		DAO getDAO() {
+//			// TODO Auto-generated method stub
+//			return null;
+//		}
+//	};
+//
+//	
+//	abstract DAO getDAO();
+//}

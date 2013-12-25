@@ -20,6 +20,8 @@ import java.nio.charset.Charset;
 import java.util.Properties;
 import java.util.logging.Logger;
 
+import org.cike.init.MyCache;
+
 public class IOUtils {
 
 	public static void main(String[] args) throws IOException {
@@ -28,7 +30,7 @@ public class IOUtils {
 	}
 	
 	public static void initest() throws IOException{
-		 load("db.properies");
+		 load("db.properties");
 		String rs= subStringAfter("select * from item where id>100","from");
 		 info(rs);
 		 
@@ -96,6 +98,17 @@ public class IOUtils {
 	
 	public static void info(String msg){
 		Logger.getLogger(IOUtils.class.getName()).info(msg);
+	}
+	
+	public static void info(Class type,Object msg){
+		//Logger.getLogger(type.getName()).info(msg); //是否缓存
+		MyCache cache=MyCache.getInstance();
+//		Logger log=null;
+//		if(cache.has(type)){
+//			 log=cache.get(type);
+//		}
+		Logger log=Logger.getLogger(type.getName());
+		log.info(msg.toString());
 	}
 	
 	

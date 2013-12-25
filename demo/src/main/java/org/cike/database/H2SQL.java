@@ -34,13 +34,21 @@ public class H2SQL {
 		return "select * from "+table;
 	}
 	
-	public static String limit(int page,int rows){
-		String rs="";
+//	public static String limit(int page,int rows){
+//		String rs="";
+//		int begin=(page-1)*rows;
+//		int end=page*rows-1;
+//		rs=" limit "+begin+","+end;
+//		return rs;
+//	}
+	
+	public static String limit(int page,int rows){ //小数据量？int
 		int begin=(page-1)*rows;
-		int end=page*rows-1;
-		rs=" limit "+begin+","+end;
-		return rs;
+	//	int end=begin+rows;
+	//	return " limit "+begin+","+end;
+		return MessageFormat.format(" limit {0},{1} ", begin,rows); //
 	}
+	
 	
 	public static String  count(String table){
 		return "select count(*) from "+table;

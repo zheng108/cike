@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.cike.ui.TablePort;
 
 public class MyTableSet {
 //	private ResultSet rs; //待定
@@ -15,8 +14,20 @@ public class MyTableSet {
 	private Map<String,Object> index=new HashMap(); //value待定
 	//List<Map>  List<List> List<Object[]>
 	private List<Object[]> data=new ArrayList();
-	TablePort port;
-	
+	TablePort port=new TablePort(){
+
+		public void addColumn(String name) {
+			// TODO Auto-generated method stub
+			 if(!columns.contains(name))
+				   columns.add(name);
+		}
+
+		public void addRows(Object[] rows) {
+			// TODO Auto-generated method stub
+			data.add(rows);
+		}
+		
+	};
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -24,36 +35,26 @@ public class MyTableSet {
 	}
 	
 	MyTableSet(){
-		port=new TablePort(){
-
-			public void addColumn(String name) {
-				// TODO Auto-generated method stub
-				 if(!columns.contains(name))
-					   columns.add(name);
-			}
-
-			public void addRows(Object[] rows) {
-				// TODO Auto-generated method stub
-				data.add(rows);
-			}
-			
-		};
+		
 		
 	}
 	
-//	MyTableSet(ResultSet rs){
-//		this.rs=rs;
-//	}
-//	
+	MyTableSet(ResultSet rs){
+		port.toTableSet(rs);
+	}
+	
 	
 	public static MyTableSet initest(){
 		MyTableSet ts=new MyTableSet();
 		return ts;
 	}
-	
-	public void query(String sql){
-		
+
+	public List<Object[]> getData() {
+		return data;
 	}
+	
+	
+
 	
 
 

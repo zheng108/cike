@@ -17,7 +17,7 @@ import java.util.Set;
 public class MyVisit {
 	public static void visit(ResultSet rs,Ports port){
 		try {
-			rs.beforeFirst();
+			//rs.beforeFirst();
 			
 			while(rs.next()){
 				port.execute(rs);

@@ -12,6 +12,7 @@ import org.apache.commons.dbutils.ResultSetHandler;
 import org.apache.commons.dbutils.handlers.MapHandler;
 import org.apache.commons.dbutils.handlers.MapListHandler;
 import org.cike.MyVisit;
+import org.cike.database.MyDataSource;
 import org.cike.init.MyDefault;
 import org.cike.io.IOUtils;
 
@@ -23,7 +24,8 @@ public class MyDBUtils {
 	
 	MyDBUtils(){
 	//	ds=new ComboPooledDataSource();
-		ds=MyDefault.getDataSource();
+	
+	//	ds=MyDefault.getDataSource();
 	}
 	
 	public MyDBUtils(DataSource ds){
@@ -37,7 +39,7 @@ public class MyDBUtils {
 	}
 	
 	public static void initest(){
-	  MyDBUtils  utils=new MyDBUtils();//new MyDataSource()
+	  MyDBUtils  utils=new MyDBUtils(new MyDataSource());//new MyDataSource()
 	  String sql="select * from item";
 	  List<Map<String, Object>> listmap=utils.query(sql);
 	  
