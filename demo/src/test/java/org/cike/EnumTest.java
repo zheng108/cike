@@ -1,6 +1,8 @@
 package org.cike;
 
 
+import java.text.MessageFormat;
+
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
@@ -36,5 +38,10 @@ public class EnumTest
     {
         assertTrue( true );
      //   assertEquals(EnumUI.EASYUI,Enum.valueOf(EnumUI.class, "easyui"));
-     }
+       String rs=MessageFormat.format("<{0} %s>", "p");
+       assertTrue(rs.equals("<p %s>"));
+       
+  
+    
+    }
 }

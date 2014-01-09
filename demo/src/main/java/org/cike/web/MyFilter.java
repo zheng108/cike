@@ -13,6 +13,7 @@ import javax.servlet.ServletResponse;
 
 import org.cike.Ports;
 import org.cike.chart.MyHighcharts;
+import org.cike.chart.MyNVD3;
 import org.cike.domain.MyChina;
 import org.cike.domain.MyInvoice;
 import org.cike.init.MyCache;
@@ -40,9 +41,13 @@ public class MyFilter implements Filter {
 				// TODO Auto-generated method stub
 				Map map=new HashMap();
 				map.put("UI", MyEasyUI.class);
+				
+				map.put("CHART", MyNVD3.class);//MyHighcharts.class
+				
+				//domain
 				map.put("CHINA", MyChina.class);
 				map.put("INVOICE", MyInvoice.class);
-				map.put("CHART", MyHighcharts.class);
+				
 				return map;
 			}
 			

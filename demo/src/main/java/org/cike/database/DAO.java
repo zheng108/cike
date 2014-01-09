@@ -77,9 +77,23 @@ public class DAO {
 		return list;
 	}
 	
-	public static MyTableSet queryTableSet(String sql) throws SQLException{
+	public static List queryListMap(String sql) throws SQLException{
+		
 		ResultSet rs=queryResultSet(sql);
 		
+		
+		return MyTableSet.format(rs);
+	}
+	
+	
+	/**
+	 * 自定义结果集 持久化
+	 * @param sql
+	 * @return
+	 * @throws SQLException
+	 */
+	public static MyTableSet queryTableSet(String sql) throws SQLException{
+		ResultSet rs=queryResultSet(sql);
 		return new MyTableSet(rs);
 
 	}

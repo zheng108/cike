@@ -1,4 +1,4 @@
-package org.cike.init;
+package org.cike.database;
 /**
  * Driver类型 是使用enum还是static待定
  * @author guest

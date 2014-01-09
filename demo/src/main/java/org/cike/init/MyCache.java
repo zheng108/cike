@@ -37,7 +37,7 @@ public class MyCache {
  	} //单例
  	
  	/**
- 	 * 
+ 	 * 代理 ？
  	 * 第一次使用MyCache.getInstance前可显示调用init
  	 * @param handler
  	 */

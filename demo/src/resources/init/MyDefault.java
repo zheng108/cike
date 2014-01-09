@@ -1,4 +1,4 @@
-package org.cike.init;
+package init;
 
 
 import java.util.Properties;

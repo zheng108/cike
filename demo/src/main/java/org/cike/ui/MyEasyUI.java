@@ -19,7 +19,7 @@ import org.cike.database.H2SQL;
 import org.cike.database.MyJDBC;
 import org.cike.database.TablePort;
 import org.cike.init.MyCache;
-import org.cike.init.MyDefault;
+
 import org.cike.io.IOUtils;
 
 public class MyEasyUI {

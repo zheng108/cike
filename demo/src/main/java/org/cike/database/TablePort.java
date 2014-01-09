@@ -19,7 +19,7 @@ public abstract class TablePort {
 			else{
 				rs.beforeFirst();
 			}
-			
+			//MyJDBC/MyTableSet.getCilumn
 			ResultSetMetaData rsmd = rs.getMetaData();
 			int size = rsmd.getColumnCount();
 			for (int i = 0; i < size; i++) {
@@ -32,7 +32,9 @@ public abstract class TablePort {
 
 				Object[] row = new Object[size];
 				for (int i = 0; i < size; i++) {
-					row[i] = rs.getObject(i + 1); //待优化
+					row[i] = rs.getObject(i + 1); 
+					//待优化
+					//MyJDBC/MyTableSet.getColumn
 				}
 				addRows(row);
 			}

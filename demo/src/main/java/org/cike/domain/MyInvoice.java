@@ -12,7 +12,7 @@ import org.cike.init.MyCache;
  */
 public class MyInvoice {
 	static String InvoiceInfo="SELECT invoiCE.ID ,firstnamE ,street ,total from inVOICE join cUSTOMER  on cUSTOMERID =cuSTOMER.id";
-    static String AreaInfo="SELECT city,count(*) FROM CUSTOMER group by city";
+   public static String AreaInfo="SELECT city,count(*) as sum FROM CUSTOMER group by city";
 	final static String DOMAIN="INVOICE";
 	static{
 		//MyCache.put(DOMAIN, MyInvoice.class);

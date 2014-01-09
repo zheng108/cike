@@ -9,6 +9,7 @@ import java.util.Map;
 
 import org.cike.io.IOUtils;
 import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 
@@ -75,6 +76,33 @@ public class Myjackson {
 			e.printStackTrace();
 		}
 		return rs;
+	}
+	
+	public static  Object fromJSON(String json){	
+		
+		Object obj=fromJSON(json,Map.class);
+		if(obj==null)obj=fromJSON(json,List.class);
+		return obj;
+	}
+	
+	public static  <T>T fromJSON(String json,Class<T> type) {
+		T t=null;
+		ObjectMapper mapper=new ObjectMapper();
+	
+			try {
+				t=mapper.readValue(json,type);
+			} catch (JsonParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (JsonMappingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+		return t;
 	}
 
 }

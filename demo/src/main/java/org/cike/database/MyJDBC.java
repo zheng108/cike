@@ -1,10 +1,17 @@
 package org.cike.database;
-
+/**
+ * 处理sql 
+ * ResultSet 转换
+ */
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.logging.Logger;
@@ -15,7 +22,7 @@ import org.cike.IPorts;
 import org.cike.MyVisit;
 import org.cike.Ports;
 import org.cike.init.MyCache;
-import org.cike.init.MyDefault;
+
 import org.cike.io.IOUtils;
 
 public class MyJDBC implements Runnable {
@@ -120,6 +127,8 @@ public class MyJDBC implements Runnable {
 			connect.rollback();
 		}
 	}
+	
+	
 	/*
 	 * public static ResultSet query(Map map){ String sql=""; final StringBuffer
 	 * sb=new StringBuffer();

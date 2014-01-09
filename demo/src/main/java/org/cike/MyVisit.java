@@ -15,18 +15,18 @@ import java.util.Set;
 
 
 public class MyVisit {
-	public static void visit(ResultSet rs,Ports port){
-		try {
-			//rs.beforeFirst();
-			
-			while(rs.next()){
-				port.execute(rs);
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+//	public static void visit(ResultSet rs,Ports port){
+//		try {
+//			//rs.beforeFirst();
+//			
+//			while(rs.next()){
+//				port.execute(rs);
+//			}
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	}
 	
 	public static void visit(Map map,IPorts port){
 		Set<Entry> set=map.entrySet();
@@ -38,11 +38,11 @@ public class MyVisit {
 	
 	
 	
-	public static void visit(Enumeration enumeration,Ports port){
-		while(enumeration.hasMoreElements()){
-			port.execute(enumeration.nextElement());
-		}
-	}
+//	public static void visit(Enumeration enumeration,Ports port){
+//		while(enumeration.hasMoreElements()){
+//			port.execute(enumeration.nextElement());
+//		}
+//	}
 	
 	public static void visit(Class clazz,Ports port){
 		BeanInfo info = null;

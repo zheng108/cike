@@ -13,7 +13,7 @@ import org.apache.commons.dbutils.handlers.MapHandler;
 import org.apache.commons.dbutils.handlers.MapListHandler;
 import org.cike.MyVisit;
 import org.cike.database.MyDataSource;
-import org.cike.init.MyDefault;
+
 import org.cike.io.IOUtils;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;

@@ -52,9 +52,42 @@ public class MyTableSet {
 	public List<Object[]> getData() {
 		return data;
 	}
+	/////工具
 	
+	/**
+	 * 根据列名返回值 可switch优化
+	 * @param rs
+	 * @param name
+	 * @return
+	 * @throws SQLException
+	 */
+	private static Object getColumn(ResultSet rs,String name) throws SQLException{
+		return rs.getObject(name); //待优化
+	}
 	
-
+	///工具
+	public static List format(ResultSet rs) throws SQLException{
+		List list=new ArrayList();
+		Object[] column=getColumn(rs);
+		while(rs.next()){
+			Map map=new HashMap();
+		   for(Object obj : column){
+			   map.put(obj, getColumn(rs,obj.toString()));
+		   }
+		   list.add(map);
+		}
+		return list;
+	}
+	
+	public static Object[] getColumn(ResultSet rs) throws SQLException{
+	ResultSetMetaData rsmd = rs.getMetaData();
+	int size = rsmd.getColumnCount();
+	Object[] column=new Object[size];
+	for (int i = 0; i < size; i++) {
+		column[i]=rsmd.getColumnName(i + 1);
+	}
+	return column;
+	}
 	
 
 

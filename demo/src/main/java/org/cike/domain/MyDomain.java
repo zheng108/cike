@@ -6,7 +6,7 @@ import java.util.Map;
 import org.app.Myjackson;
 import org.cike.MyBean;
 import org.cike.init.MyCache;
-import org.cike.init.MyDefault;
+
 
 public class MyDomain {
 

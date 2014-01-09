@@ -8,8 +8,6 @@ import java.util.Properties;
 
 import javax.sql.DataSource;
 
-import org.cike.init.EnumDriver;
-import org.cike.init.MyDefault;
 import org.cike.io.IOUtils;
 
 public class MyDataSource implements DataSource{ //ConnectionPoolDataSource 
